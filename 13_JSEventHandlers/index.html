@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Web Page</title>
+  <meta charset="UTF-8">
+  <title>Event Handler Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      text-align: center;
+      line-height: 100px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Interactive Event Handlers Demo</h1>
 
-    <!-- Button that triggers click event -->
-    <button id="clickButton">Click Me</button>
-    
-    <br><br>
+  <h2>JavaScript Event Handler Demo</h2>
 
-    <!-- Form that triggers submit event -->
-    <form id="myForm">
-        <label for="name">Enter Your Name: </label>
-        <input type="text" id="name" placeholder="Your name" required>
-        <button type="submit">Submit</button>
-    </form>
+  <!-- Click Event -->
+  <button onclick="sayHello()">Click Me</button>
 
-    <br><br>
+  <br><br>
 
-    <!-- Input field that triggers focus and blur events -->
-    <input type="text" id="inputField" placeholder="Click to focus">
+  <!-- Change Event -->
+  <select onchange="showSelected(this)">
+    <option value="">--Select Subject--</option>
+    <option value="Math">Math</option>
+    <option value="Science">Science</option>
+    <option value="English">English</option>
+  </select>
 
-    <br><br>
+  <br><br>
 
-    <!-- Dropdown that triggers change event -->
-    <label for="colorPicker">Pick a color: </label>
-    <select id="colorPicker">
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-    </select>
+  <!-- Keyup Event -->
+  <input type="text" onkeyup="keyPressed()" placeholder="Type something...">
 
-    <script>
-        // Event handler for click event
-        function handleClick() {
-            alert('Button clicked!');
-        }
+  <br><br>
 
-        // Event handler for submit event
-        function handleSubmit(event) {
-            event.preventDefault();  // Prevent the form from submitting to the server
-            let name = document.getElementById('name').value;
-            alert('Form submitted! Hello, ' + name);
-        }
+  <!-- Mouseover Event -->
+  <div class="box" onmouseover="hoverEffect()">Hover over me</div>
 
-        // Event handler for focus event
-        function handleFocus() {
-            console.log('Input field focused!');
-        }
+  <br><br>
 
-        // Event handler for blur event
-        function handleBlur() {
-            console.log('Input field lost focus!');
-        }
+  <!-- Submit Event -->
+  <form onsubmit="return validateForm()">
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="submit" value="Submit">
+  </form>
 
-        // Event handler for change event
-        function handleChange(event) {
-            alert('You selected: ' + event.target.value);
-        }
+  <script>
+    // 1. Click Event Handler
+    function sayHello() {
+      alert("Hello, you clicked the button!");
+    }
 
-        // Attach the event handlers to elements
-        document.getElementById('clickButton').addEventListener('click', handleClick);
-        document.getElementById('myForm').addEventListener('submit', handleSubmit);
-        document.getElementById('inputField').addEventListener('focus', handleFocus);
-        document.getElementById('inputField').addEventListener('blur', handleBlur);
-        document.getElementById('colorPicker').addEventListener('change', handleChange);
-    </script>
+    // 2. Change Event Handler
+    function showSelected(selectElement) {
+      alert("You selected: " + selectElement.value);
+    }
+
+    // 3. Keyup Event Handler
+    function keyPressed() {
+      console.log("A key was pressed!");
+    }
+
+    // 4. Mouseover Event Handler
+    function hoverEffect() {
+      alert("Mouse is over the div!");
+    }
+
+    // 5. Form Submit Event Handler
+    function validateForm() {
+      let name = document.getElementById("name").value;
+      if (name.trim() === "") {
+        alert("Name is required!");
+        return false;
+      }
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+
 </body>
 </html>
