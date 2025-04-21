@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humanized Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Reset some basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: white; /* Changed from #f7f7f7 to red */
+      color: white; /* Changed from #333 to white */
+    }
+
+    .calculator {
+      background-color:rgb(17, 47, 146);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .calculator .display {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      width: 100%;
+      border: none;
+      color: #555;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .button {
+      padding: 20px;
+      font-size: 1.5em;
+      background-color: #f1f1f1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #555;
+    }
+
+    .button:hover {
+      background-color: #f1d5d5;
+    }
+
+    .button:active {
+      background-color: #d2a4a4;
+    }
+
+    .button:focus {
+      outline: none;
+    }
+
+    .equal {
+      background-color: #58cc58;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .clear {
+      background-color: #ff4c4c;
+      color: white;
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" class="display" disabled>
+  
+  <div class="buttons">
+    <button class="button clear" onclick="clearDisplay()">C</button>
+    <button class="button" onclick="appendNumber('7')">7</button>
+    <button class="button" onclick="appendNumber('8')">8</button>
+    <button class="button" onclick="appendNumber('9')">9</button>
+    <button class="button" onclick="appendNumber('4')">4</button>
+    <button class="button" onclick="appendNumber('5')">5</button>
+    <button class="button" onclick="appendNumber('6')">6</button>
+    <button class="button" onclick="appendNumber('1')">1</button>
+    <button class="button" onclick="appendNumber('2')">2</button>
+    <button class="button" onclick="appendNumber('3')">3</button>
+    <button class="button" onclick="appendNumber('0')">0</button>
+    <button class="button" onclick="appendOperator('+')">+</button>
+    <button class="button" onclick="appendOperator('-')">-</button>
+    <button class="button" onclick="appendOperator('*')">*</button>
+    <button class="button" onclick="appendOperator('/')">/</button>
+    <button class="button equal" onclick="calculateResult()">=</button>
+  </div>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+  let currentInput = '';
+
+  // Function to append numbers or operators to the display
+  function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+  }
+
+  function appendOperator(operator) {
+    currentInput += ` ${operator} `;
+    display.value = currentInput;
+  }
+
+  // Function to clear the display
+  function clearDisplay() {
+    currentInput = '';
+    display.value = '';
+  }
+
+  // Function to calculate the result
+  function calculateResult() {
+    try {
+      currentInput = eval(currentInput).toString();
+      display.value = currentInput;
+    } catch (e) {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>

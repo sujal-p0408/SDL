@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic TY Time Table</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>TY Time Table - Dynamic</h2>
+
+  <div class="container mb-4">
+    <div class="row g-2">
+      <div class="col-md-3">
+        <input type="text" id="day" class="form-control" placeholder="Day (e.g. Monday)">
+      </div>
+      <div class="col-md-3">
+        <input type="text" id="time" class="form-control" placeholder="Time Slot (e.g. 9-10)">
+      </div>
+      <div class="col-md-3">
+        <input type="text" id="subject" class="form-control" placeholder="Subject Name">
+      </div>
+      <div class="col-md-2">
+        <input type="text" id="faculty" class="form-control" placeholder="Faculty Initials">
+      </div>
+      <div class="col-md-1">
+        <button onclick="addRow()" class="btn btn-primary w-100">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table table-bordered table-striped" id="timetable">
+      <thead class="table-dark">
+        <tr>
+          <th>Day</th>
+          <th>Time Slot</th>
+          <th>Subject Name</th>
+          <th>Faculty Initials</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function addRow() {
+      let day = document.getElementById("day").value;
+      let time = document.getElementById("time").value;
+      let subject = document.getElementById("subject").value;
+      let faculty = document.getElementById("faculty").value;
+
+      if (day && time && subject && faculty) {
+        let table = document.getElementById("timetable").getElementsByTagName('tbody')[0];
+        let newRow = table.insertRow();
+
+        newRow.insertCell(0).innerText = day;
+        newRow.insertCell(1).innerText = time;
+        newRow.insertCell(2).innerText = subject;
+        newRow.insertCell(3).innerText = faculty;
+
+        // Clear inputs
+        document.getElementById("day").value = "";
+        document.getElementById("time").value = "";
+        document.getElementById("subject").value = "";
+        document.getElementById("faculty").value = "";
+      } else {
+        alert("Please fill all fields");
+      }
+    }
+  </script>
+
+</body>
+</html>

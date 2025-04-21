@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up and Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 400px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: green;
+            text-align: center;
+        }
+
+        .form-container {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="signupForm" class="form-container">
+        <h1>Sign Up</h1>
+        <form id="signUpForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <div id="usernameError" class="error hide">Username is required!</div>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div id="passwordError" class="error hide">Password is required!</div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <div id="loginForm" class="form-container hide">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+            <div id="loginUsernameError" class="error hide">Please enter a valid username!</div>
+
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <div id="loginPasswordError" class="error hide">Please enter your password!</div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="welcomeMessage" class="hide">
+        <h1>Welcome, <span id="displayUsername"></span>!</h1>
+    </div>
+</div>
+
+<script>
+    // Variables to store the user's data
+    let storedUsername = '';
+    let storedPassword = '';
+
+    // Handle sign-up form submission
+    document.getElementById('signUpForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form from submitting
+
+        // Get the input values
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Validation
+        let isValid = true;
+        if (username === '') {
+            document.getElementById('usernameError').classList.remove('hide');
+            isValid = false;
+        } else {
+            document.getElementById('usernameError').classList.add('hide');
+        }
+
+        if (password === '') {
+            document.getElementById('passwordError').classList.remove('hide');
+            isValid = false;
+        } else {
+            document.getElementById('passwordError').classList.add('hide');
+        }
+
+        // If validation passes, store the data and show login form
+        if (isValid) {
+            storedUsername = username;
+            storedPassword = password;
+            alert('Sign Up Successful! Please login.');
+
+            // Hide sign-up form and show login form
+            document.getElementById('signupForm').classList.add('hide');
+            document.getElementById('loginForm').classList.remove('hide');
+        }
+    });
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form from submitting
+
+        // Get the input values
+        const loginUsername = document.getElementById('loginUsername').value;
+        const loginPassword = document.getElementById('loginPassword').value;
+
+        // Validation
+        let isValid = true;
+        if (loginUsername !== storedUsername) {
+            document.getElementById('loginUsernameError').classList.remove('hide');
+            isValid = false;
+        } else {
+            document.getElementById('loginUsernameError').classList.add('hide');
+        }
+
+        if (loginPassword !== storedPassword) {
+            document.getElementById('loginPasswordError').classList.remove('hide');
+            isValid = false;
+        } else {
+            document.getElementById('loginPasswordError').classList.add('hide');
+        }
+
+        // If validation passes, show welcome message
+        if (isValid) {
+            document.getElementById('loginForm').classList.add('hide');
+            document.getElementById('welcomeMessage').classList.remove('hide');
+            document.getElementById('displayUsername').textContent = storedUsername;
+        }
+    });
+</script>
+
+</body>
+</html>

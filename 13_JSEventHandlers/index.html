@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Page</title>
+</head>
+<body>
+    <h1>Interactive Event Handlers Demo</h1>
+
+    <!-- Button that triggers click event -->
+    <button id="clickButton">Click Me</button>
+    
+    <br><br>
+
+    <!-- Form that triggers submit event -->
+    <form id="myForm">
+        <label for="name">Enter Your Name: </label>
+        <input type="text" id="name" placeholder="Your name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <br><br>
+
+    <!-- Input field that triggers focus and blur events -->
+    <input type="text" id="inputField" placeholder="Click to focus">
+
+    <br><br>
+
+    <!-- Dropdown that triggers change event -->
+    <label for="colorPicker">Pick a color: </label>
+    <select id="colorPicker">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+    <script>
+        // Event handler for click event
+        function handleClick() {
+            alert('Button clicked!');
+        }
+
+        // Event handler for submit event
+        function handleSubmit(event) {
+            event.preventDefault();  // Prevent the form from submitting to the server
+            let name = document.getElementById('name').value;
+            alert('Form submitted! Hello, ' + name);
+        }
+
+        // Event handler for focus event
+        function handleFocus() {
+            console.log('Input field focused!');
+        }
+
+        // Event handler for blur event
+        function handleBlur() {
+            console.log('Input field lost focus!');
+        }
+
+        // Event handler for change event
+        function handleChange(event) {
+            alert('You selected: ' + event.target.value);
+        }
+
+        // Attach the event handlers to elements
+        document.getElementById('clickButton').addEventListener('click', handleClick);
+        document.getElementById('myForm').addEventListener('submit', handleSubmit);
+        document.getElementById('inputField').addEventListener('focus', handleFocus);
+        document.getElementById('inputField').addEventListener('blur', handleBlur);
+        document.getElementById('colorPicker').addEventListener('change', handleChange);
+    </script>
+</body>
+</html>

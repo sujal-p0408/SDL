@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gmail Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Gmail Registration</h2>
+    <form onsubmit="return validateForm()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" id="name" class="form-control" placeholder="Enter your name">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" id="email" class="form-control" placeholder="Enter your email">
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Create password">
+      </div>
+
+      <div class="mb-3">
+        <label for="confirm" class="form-label">Confirm Password</label>
+        <input type="password" id="confirm" class="form-control" placeholder="Re-enter password">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Gender</label><br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female" class="ms-2"> Female
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="terms">
+        <label class="form-check-label" for="terms">I accept the terms and conditions</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirm = document.getElementById("confirm").value;
+      let gender = document.querySelector('input[name="gender"]:checked');
+      let terms = document.getElementById("terms").checked;
+  
+      if (name === "") {
+        alert("Please enter your name.");
+        return false;
+      }
+  
+      // Name validation added here ✅
+      let namePattern = /^[A-Za-z\s]+$/;
+      if (!namePattern.test(name)) {
+        alert("Name should only contain letters and spaces.");
+        return false;
+      }
+  
+      if (email === "" || password === "" || confirm === "") {
+        alert("Please fill in all fields.");
+        return false;
+      }
+  
+      if (!email.includes("@") || !email.endsWith(".com")) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+  
+      if (password.length < 6) {
+        alert("Password should be at least 6 characters.");
+        return false;
+      }
+  
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return false;
+      }
+  
+      if (!gender) {
+        alert("Please select your gender.");
+        return false;
+      }
+  
+      if (!terms) {
+        alert("You must accept the terms and conditions.");
+        return false;
+      }
+  
+      alert("Registration Successful!");
+      return true;
+    }
+  </script>
+  
+
+</body>
+</html>
