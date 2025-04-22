@@ -2,43 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Notification Popup</title>
+  <title>Simple Notification</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 50px;
-      background-color: #f2f2f2;
-    }
-
     .notification {
       display: none;
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #4CAF50;
+      bottom: 20px;
+      right: 20px;
+      background: green;
       color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
-    .notification.show {
-      display: block;
-      animation: fadeInOut 4s ease-in-out;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(20px); }
-      10% { opacity: 1; transform: translateY(0); }
-      90% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(20px); }
-    }
-
-    button {
       padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -47,18 +20,17 @@
   <button onclick="showNotification()">Show Notification</button>
 
   <div id="myNotification" class="notification">
-    ✅ This is your notification!
+    ✅ Notification shown!
   </div>
 
   <script>
     function showNotification() {
-      const popup = document.getElementById("myNotification");
-      popup.classList.add("show");
+      const note = document.getElementById("myNotification");
+      note.style.display = "block";
 
-      // Hide the notification after 4 seconds
       setTimeout(() => {
-        popup.classList.remove("show");
-      }, 4000);
+        note.style.display = "none";
+      }, 3000); // Hide after 3 seconds
     }
   </script>
 

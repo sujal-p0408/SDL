@@ -1,13 +1,11 @@
-// Display an alert when the button is clicked
 function showAlert() {
     alert("Hello! Welcome to the Human Lifetime and Time of Day Program.");
   }
   
-  // Calculate average number of weeks in human lifetime
   function calculateAverageLifetime() {
-    const averageLifeExpectancy = 72; // Average life expectancy in years
-    const weeksInYear = 52; // Number of weeks in a year
-    const averageWeeks = averageLifeExpectancy * weeksInYear; // Total weeks in average human lifetime
+    const averageLifeExpectancy = 72; 
+    const weeksInYear = 52; 
+    const averageWeeks = averageLifeExpectancy * weeksInYear; 
     return averageWeeks;
   }
   

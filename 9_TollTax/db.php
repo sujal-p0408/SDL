@@ -1,10 +1,11 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "";
-$db = "toll_db";
+$password = "";
+$dbname = "toll_tax_db";
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $user, $password, $dbname);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

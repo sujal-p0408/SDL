@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS toll_tax_db;
+
+USE toll_tax_db;
+
+CREATE TABLE IF NOT EXISTS toll_entries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vehicle_number VARCHAR(20) NOT NULL,
+    vehicle_type VARCHAR(50) NOT NULL,
+    amount_paid DECIMAL(10,2) NOT NULL,
+    operator VARCHAR(100) NOT NULL,
+    entry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,13 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";  // Default MySQL username
-$password = "";  // Default MySQL password
-$dbname = "pharmacy";  // Database name
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "pharmacy_db";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

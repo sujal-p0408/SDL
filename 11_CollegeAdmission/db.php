@@ -1,13 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";  // Default MySQL username
-$password = "";  // Default MySQL password
-$dbname = "college_admission";  // Database name
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "college"; // Change if your DB name is different
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

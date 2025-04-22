@@ -3,80 +3,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Toll Tax Management</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Toll Entry Form</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        .container { background: #fff; padding: 20px; max-width: 500px; margin: auto; border-radius: 5px; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 15px; background: green; color: white; border: none; }
+        .message { padding: 10px; margin-top: 10px; }
+        .success { background: #d4edda; color: green; }
+        .error { background: #f8d7da; color: red; }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-  <h2 class="mb-4">Toll Tax Entry</h2>
 
-  <!-- Toll Form -->
-  <form method="post" class="mb-4">
-    <div class="row">
-      <div class="col">
-        <input type="text" name="vehicle_no" class="form-control" placeholder="Vehicle Number" required>
-      </div>
-      <div class="col">
-        <select name="vehicle_type" class="form-control" required>
-          <option value="">Select Vehicle Type</option>
-          <option value="Car">Car</option>
-          <option value="Truck">Truck</option>
-          <option value="Bike">Bike</option>
-          <option value="Bus">Bus</option>
+<div class="container">
+    <h2>Record Toll Entry</h2>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $vehicle_number = $conn->real_escape_string($_POST["vehicle_number"]);
+        $vehicle_type = $conn->real_escape_string($_POST["vehicle_type"]);
+        $amount_paid = $conn->real_escape_string($_POST["amount_paid"]);
+        $operator = $conn->real_escape_string($_POST["operator"]);
+
+        $sql = "INSERT INTO toll_entries (vehicle_number, vehicle_type, amount_paid, operator)
+                VALUES ('$vehicle_number', '$vehicle_type', '$amount_paid', '$operator')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<div class='message success'>Toll entry recorded successfully!</div>";
+        } else {
+            echo "<div class='message error'>Error: " . $conn->error . "</div>";
+        }
+    }
+    ?>
+
+    <form method="post">
+        <label>Vehicle Number:</label>
+        <input type="text" name="vehicle_number" required>
+
+        <label>Vehicle Type:</label>
+        <select name="vehicle_type" required>
+            <option value="">--Select--</option>
+            <option>Car</option>
+            <option>Truck</option>
+            <option>Bus</option>
+            <option>Bike</option>
         </select>
-      </div>
-      <div class="col">
-        <input type="number" name="amount" class="form-control" placeholder="Toll Amount" required>
-      </div>
-      <div class="col">
-        <button type="submit" name="submit" class="btn btn-primary w-100">Add Entry</button>
-      </div>
-    </div>
-  </form>
 
-  <!-- Insert into DB -->
-  <?php
-  if (isset($_POST['submit'])) {
-      $vno = $_POST['vehicle_no'];
-      $vtype = $_POST['vehicle_type'];
-      $amount = $_POST['amount'];
+        <label>Amount Paid (₹):</label>
+        <input type="number" name="amount_paid" required>
 
-      $sql = "INSERT INTO toll_data (vehicle_no, vehicle_type, amount) VALUES ('$vno', '$vtype', '$amount')";
-      if ($conn->query($sql)) {
-          echo "<div class='alert alert-success'>Entry added!</div>";
-      } else {
-          echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
-      }
-  }
-  ?>
+        <label>Operator Name:</label>
+        <input type="text" name="operator" required>
 
-  <!-- Display Data -->
-  <h4 class="mt-5">Toll Collection Records</h4>
-  <table class="table table-bordered mt-3">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Vehicle No</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Amount (₹)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $result = $conn->query("SELECT * FROM toll_data ORDER BY date_time DESC");
-      while ($row = $result->fetch_assoc()) {
-          echo "<tr>
-              <td>{$row['id']}</td>
-              <td>{$row['vehicle_no']}</td>
-              <td>{$row['vehicle_type']}</td>
-              <td>{$row['date_time']}</td>
-              <td>{$row['amount']}</td>
-          </tr>";
-      }
-      ?>
-    </tbody>
-  </table>
+        <button type="submit">Submit Entry</button>
+    </form>
+
+    <p style="text-align:center; margin-top: 20px;">
+        <a href="view_entries.php">View All Toll Entries (Admin)</a>
+    </p>
 </div>
+
 </body>
 </html>

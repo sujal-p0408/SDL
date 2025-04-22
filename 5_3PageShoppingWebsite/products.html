@@ -3,63 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>Garments Store - Products</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">GarmentsStore</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">GarmentsStore</a>
+      <ul class="navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Our Products</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-     <!-- Product 1 -->
-<div class="col">
-    <div class="card h-100">
-      <img src="images/tshirt.jpg" class="card-img-top" alt="Men's T-Shirt">
-      <div class="card-body">
-        <h5 class="card-title">Men's T-Shirt</h5>
-        <p class="card-text">Comfortable cotton T-shirt in various colors.</p>
-        <button class="btn btn-primary w-100">Buy Now</button>
+  <div class="products-container">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="images/tshirt.jpg" alt="Men's T-Shirt">
+        <h3>Men's T-Shirt</h3>
+        <p>Comfortable cotton T-shirt in various colors.</p>
+        <button class="buy-btn">Buy Now</button>
       </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="images/kurti.jpg" alt="Women's Kurti">
+        <h3>Women's Kurti</h3>
+        <p>Elegant and traditional wear for all occasions.</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="images/kids.jpg" alt="Kids' Outfit">
+        <h3>Kids' Outfit</h3>
+        <p>Trendy outfits for your little champs.</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+
     </div>
   </div>
-  
-  <!-- Product 2 -->
-  <div class="col">
-    <div class="card h-100">
-      <img src="images/kurti.jpg" class="card-img-top" alt="Women's Kurti">
-      <div class="card-body">
-        <h5 class="card-title">Women's Kurti</h5>
-        <p class="card-text">Elegant and traditional wear for all occasions.</p>
-        <button class="btn btn-primary w-100">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Product 3 -->
-  <div class="col">
-    <div class="card h-100">
-      <img src="images/kids.jpg" class="card-img-top" alt="Kids' Outfit">
-      <div class="card-body">
-        <h5 class="card-title">Kids' Outfit</h5>
-        <p class="card-text">Trendy outfits for your little champs.</p>
-        <button class="btn btn-primary w-100">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  
+
+  <footer class="footer">© 2025 GarmentsStore</footer>
+
+</body>
+</html>
